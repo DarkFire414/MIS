@@ -1,1 +1,1 @@
-# MIS-Administraci-n-de-laboratorios
+# MIS-Administracion-de-laboratorios
