@@ -1,0 +1,38 @@
+<h1>Consultar disponibilidad</h1><hr>
+
+<form action="">
+    <div class="row">
+        <div class="col-7 col-md-10">
+            <select class="form-select" aria-label="Default select example">
+                <option selected>Seleccione el laboratorio</option>
+                <option value="1">421</option>
+                <option value="2">422</option>
+                <option value="3">423</option>
+            </select>
+        </div>
+        <div class="col-5 col-md-2">
+            <button type="submit" class="btn btn-primary btn-block mx-2">Actualizar</button>
+        </div>
+    </div>
+</form>
+
+<div class="row d-flex justify-content-center align-items-center h-100">
+    <!--col-12 for less than md-->
+    <div class="col-12 col-md-6">
+        <div id="aforo_wd" class="container border p-2 mt-2" style="border-radius: 1.0rem;">
+            <h2>Aforo</h2><hr>
+            <h3 id="fecha">Fecha: 26/10/2022</h3>
+            <h3 id="hora">Hora: 10:44 PM</h3>
+            <h3>Ocupabilidad actual:</h3>
+            <h1 id="ocupabilidad" style="text-align: center;">25/30</h1>
+            <h3 id="disponibilidad">Disponibilidad: 5</h3>
+        </div>
+    </div>
+    
+    <div class="col-12 col-md-6">
+        <div id="horario_wd" class="container border p-2 mt-2" style="border-radius: 1.0rem;">
+            <h2>Horario asignado</h2><hr>
+            <img id="horario_img" src="../img_horarios/421.jpg" class="img-fluid">
+        </div>
+    </div>
+</div>

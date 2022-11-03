@@ -1,0 +1,49 @@
+<h1>Solicitud</h1><hr>
+
+<div id="requestList_wd" class="container border p-2 mt-2" style="border-radius: 1.0rem;">
+    <h5>Solicitudes enviadas</h5><hr>
+    <select class="form-select mt-2" aria-label="Default select example">
+        <option selected>Seleccione</option>
+        <option value="1">Lab:422 - 25/10/2022</option>
+        <option value="2">Lab:422 - 26/10/2022</option>
+        <option value="3">Lab:422 - 27/10/2022</option>
+    </select>
+    <p class="mt-2">Status: Aprovada</p>
+    <button class="btn btn-primary">Eliminar</button>
+</div>
+
+<div id="request_wd" class="container border p-2 mt-2" style="border-radius: 1.0rem;">
+    <form action="" class="h-100">
+        <h5 class="form_element">Solicite acceso a un laboratorio</h5><hr>
+        <div class="mt-2">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" placeholder="Joahan Pacheco Hernández" disabled>
+        </div>
+        <div class="mt-2">
+            <label for="boleta" class="form-label">Boleta</label>
+            <input type="text" class="form-control" placeholder="2020680071" disabled>
+        </div>
+        <select class="form-select mt-2" aria-label="Default select example">
+            <option selected>Seleccione el laboratorio</option>
+            <option value="1">421</option>
+            <option value="2">422</option>
+            <option value="3">423</option>
+        </select>
+        <select class="form-select mt-2" aria-label="Default select example">
+            <option selected>Seleccione el horario</option>
+            <option value="1">7:30 - 9:00</option>
+            <option value="2">9:00 - 10:30</option>
+            <option value="3">10:30 - 12:00</option>
+            <option value="3">12:00 - 13:30</option>
+            <option value="3">13:30 - 15:00</option>
+            <option value="3">15:00 - 14:30</option>
+        </select>
+        <div class="mt-2">
+            <label for="text" class="form-label text" id="text">Describa brevemente el mótivo de uso</label>
+            <textarea type="text" class="form-control" placeholder="" id="email"></textarea>
+        </div>
+        <div class="mt-2 mx-auto">
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </div>
+    </form>
+</div>
