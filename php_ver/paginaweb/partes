@@ -1,0 +1,12 @@
+<?php
+    include("conexion.php"); //Conectamos con la base de datos
+    session_start();
+    if(isset($_SESSION['user'])){
+        header('location: comienzo.php');
+    }
+    if((isset($_REQUEST['usuario']) && !empty($_REQUEST['usuario']))){
+        $registroingre = 'ingresar';
+        $usu = $_POST['usuario'];
+    }
+    if((isset($_REQUEST['usua'])))
+?>
