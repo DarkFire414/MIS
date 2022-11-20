@@ -33,7 +33,7 @@
     ?>
 </div>
 
-<div class="row d-flex justify-content-center align-items-center h-100">
+<div class="row d-flex justify-content-center align-items-center">
     <!--col-12 for less than md-->
     <div class="col-12 col-md-6">
         <div id="requestList_wd" class="container border p-2 mt-2" style="border-radius: 1.0rem;">
@@ -66,6 +66,7 @@
                             echo "<td>".$datos['disponibilidad']."</td>";
                             echo "<td> <button class='btn btn-primary btn-block' onclick='mostrarhorario(".$datos['id'].");'> Ver Horario </button> </td>";//El dato del horario es una imagen
                             echo "<td>".$datos['edificio']."</td>";
+                            $horas = "";
                             $horas_temp = mysqli_query($conexion, "SELECT * FROM hlab WHERE id_labo='".$datos['id']."' AND diasemana='".$diaactual."'")->fetch_assoc();
                             if(isset($horas_temp['horario'])){
                                 $horas = $horas_temp['horario'];
