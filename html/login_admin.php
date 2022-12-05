@@ -2,7 +2,7 @@
     include("conexion.php");
     session_start(); //Permmite manejar el boleta y la sesion
     if(isset($_SESSION['admin'])){
-        header('location: comienzo.php');
+        header('location: dashboard_admin.php');
     }
 
     //VERIFICAMOS QUE SE HAYAN INGRESADO DATOS
@@ -25,7 +25,7 @@
                 //if($verifica==1 && password_verify($contrasena,$encriptada)){
                 if($verifica==1 && ($encriptada == $contrasena)){
                     $_SESSION['admin']=$usuario;
-                    header('location: comienzo.php');
+                    header('location: dashboard_admin.php');
                 }else{
                     if($verifica==1){
                         echo"<script> alert('Tu contraseña es incorrecta'); </script>";
@@ -47,8 +47,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="../CSS/dashboard.css" rel="stylesheet">
+    <script src="../js/bootstrap.bundle.min.js"></script>
     
     <!-- Navigation Bar style sheet -->
     <link rel="stylesheet" href="../CSS/login_admin.css">
@@ -67,11 +67,13 @@
                             <img src="../img/main_logo.png" class="img">
                         </div>
                         <div class="col d-flex justify-content-center">
-                            <img src="../img/logo.png" class="logo">    
+                            <a href="../"><img src="../img/logo.png" class="logo"></a>    
                         </div>
                         <div class="col d-flex flex-column justify-content-center">
-                            <h1>MIS</h1>
-                            <i class="text">Make It Safe</i>
+                            <a href="../" style="color: black; text-decoration: none">
+                                <h1>MIS</h1>
+                                <i class="text">Make It Safe</i>
+                            </a>
                         </div>
                     </div>
                     <div class="row d-flex justify-content-center">

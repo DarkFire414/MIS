@@ -21,40 +21,29 @@ function buttonId(obj)
     
     redirect(currentid);
 }
-function redirectmodificar(lab){
-    $(".main").load("../html/dash_menus/ra_horario.php?id=" + lab);
-}
+
 function redirect(sensorType)
 {
     // Load the appropiate content in the div main
     switch (sensorType){
         case "b1":
-            // Registrar estudiante
-            $(".main").load("../html/dash_menus/regis_estudiante.php");
+            // Consultar disponibilidad
+            $(".main").load("../html/dash_menus/alumno_disponibilidad.php");
             break;
         case "b2":
-            // Registrar o alterar horario
-            $(".main").load("../html/dash_menus/ra_horario.php");
+            // Solicitar acceso
+            $(".main").load("../html/dash_menus/alumno_solicitud.php");
             break;
         case "b3":
-            // Consultar horarios
-            $(".main").load("../html/dash_menus/consu_horario.php");
-            break;
-        case "b4":
-            $(".main").load("../html/dash_menus/atiendesolicitudes.php");
+            // Consultar solicitud
+            $(".main").load("../html/dash_menus/alumno_consultar.php");
             break;
         case "b5":
-            $(".main").load("../html/dash_menus/uso_alumnos.php");
-                break;
-        case "b6":
-            $(".main").load("../html/dash_menus/uso_alumnos.php");
-                break;
-        case "b7":
             // Cerrar sesión
             
             break;
         default:
-            $(".main").load("../html/dash_menus/regis_estudiante.php");
+            $(".main").load("../html/dash_menus/alumno_solicitud.php?solicitar=" + sensorType);
             break;
     }
 }

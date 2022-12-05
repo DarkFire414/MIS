@@ -1,0 +1,27 @@
+//INSTRUCCIONES SOBRE QUE DATOS SE DEBEN PEDIR A LA ESP32
+1.- Numero del laboratorio
+2.- Numero de la tarjeta RFID
+
+//FUNCIONAMIENTO DENTRO DEL SISTEMA
+1.- Se va a buscar al alumno que tenga relacionada dicha ID del RFID
+2.- Se tiene que verificar si la fecha y hora de la solicitud actual es valida, o borrarla en caso contrario. A consecuencia hay que volver a colocar en 0 el atributo de "estado" en la tabla de estudiante
+3.- Se va a consultar su acceso, la accion es de acuerdo al siguiente criterio:
+    0 -> Sin solicitud pendiente (NO PUEDE ENTRAR)
+    1 -> Solicitud pendiente     (NO PUEDE ENTRAR)
+    2 -> Laboratorio asignado    (PUEDE ENTRAR)
+    3 -> Laboratorio no asignado (NO PUEDE ENTRAR)
+    
+//RESTRICCIONES
+- El alumno tiene un laboratorio asignado, por lo tanto cuando intente entrar a otro se le debe notificar mediante
+la pantalla de la ESP que no tiene acceso y lo solicite en la APP.
+- Cada ves que el alumno pase su tarjeta de acceso al laboratorio que pidió podra accesar, pero si su tiempo se terminó
+en el momento exacto de la consulta por parte de la ESP32 entonces el registro de la solicutud se borra y se da debaja
+el acceso del alumno.
+- Si el alumno se encuentra dentro del laboratorio en el momento en el que su acceso expira, entonces el administrador
+desde su plataforma puede monitorearlo y ademas el sistema envia a la aplicacion del estudiante un aviso de que el tiempo
+se ha agotado y se le pide desocupar el laboratorio, en el momento en el que confirme su salida con la tarjeta, su 
+solicitud se borra y el sistema vuelve a los valores por defecto.
+
+//Consideraciones extra, el administrador vera una tabla con todas las solicitudes de los alumnos que han hecho a lo largo
+del tiempo, sin embargo es necesario borrar la solicitud del alumno para que el sistema incremente su confiabilidad.
+El administrador puede eliminar en cualquier momento las solicitudes que desee.
