@@ -18,13 +18,16 @@
     
     if(isset($_REQUEST['cancelar'])){ //Cancelamos la solicitud
         if(mysqli_query($conexion, "DELETE FROM solicitudes WHERE boleta='".$_SESSION['alumno']."'")){
-            echo "<script> alert('Solicitud eliminada'); </script>";
+            mysqli_query($conexion, "UPDATE estudiante SET acceso=0 WHERE boleta='".$_SESSION['alumno']."'"); //Actualizamos permisos de alumno
+            mysqli_query($conexion, "UPDATE ");
+            echo "<script> alert('Solicitud eliminadaa'); </script>";
         }
     }
-
-    $csol = mysqli_query($conexion, "SELECT * FROM solicitudes WHERE boleta = '".$_SESSION['alumno']."'");
+    $uso = mysqli_query($conexion, "SELECT * FROM estudiante WHERE boleta='".$_SESSION['alumno']."'")->fetch_assoc(); //consultamos si el estudiante esta usando el laboratorio
+    $csol = mysqli_query($conexion, "SELECT * FROM solicitudes WHERE boleta = '".$_SESSION['alumno']."'"); //consulta_solicitud
     $solicitudes = $csol->fetch_assoc();
         if($solicitudes != NULL){
+            echo "<p><strong>Nota: </strong> Para dar de baja una solicitud es necesario abandonar el laboratorio actual </p>";
             echo "<div class='table-responsive'><center><table border class = 'tb2 table table-hover table-responsive'>
                     <tr>
                         <td> Identificador de tu solicitud </td>
@@ -51,9 +54,14 @@
                 echo       "<td>". $solicitudes['horainicio'] ."</td>
                             <td>". $solicitudes['horatermino'] ."</td>
                             <td>". $solicitudes['motivo'] ."</td>
-                            <td>". $solicitudes['fecha'] ."</td>
-                            <td> <button class='btn btn-primary btn-block' onclick='confirmar();'> Cancelar solicitud </button> </td>
+                            <td>". $solicitudes['fecha'] ."</td>";
+                    if($uso['laboratorio'] == NULL){                           
+                        echo"<td> <button class='btn btn-primary btn-block' onclick='confirmar();'> Cancelar solicitud </button> </td>
                         </tr>";
+                    }else{
+                        echo"<td> Para dar de baja tu solicitud abandona el laboratorio actual </td>
+                        </tr>";
+                    }
             }while($solicitudes=$csol->fetch_assoc());
                 echo "</table></center></div>";
         }else{ ?>
@@ -67,7 +75,6 @@
                 window.location = "dashboard.php?cancelar"
                 redirect("b3");
             } else {
-                window.location = "comienzo.php?solicitudes";
             }
         }
 </script>

@@ -2,8 +2,8 @@
 
 <div id="requestList_wd" class="container border p-2 mt-2" style="border-radius: 1.0rem;">
     <!-- ------------------------------------------Formulario de registro------------------------------------------------->
-    <form class='registrar' id="form-registra" action="dashboard_admin.php" class="h-100" method='POST'>
-        <h5 class="form_element">Crear cuenta para el alumno</h5><hr>
+    <form id="form-registra" action="dashboard_admin.php" class="h-100" method='POST'>
+        <h5 class="form_element">Crear cuenta para el alumno</h5><br>
         <strong>Información personal:</strong>
         <div class="mt-2">
             <label for="nombre" class="form-label">Nombre</label>
@@ -32,6 +32,11 @@
             <label for="pass" class="form-label">Contraseña</label>
             <input type="password" name='pass' size="25" class="bordecito form-control" maxlength="20" required title="Requisitos mínimos: 6 caracteres, una mayúscula y una minúscula. Puede usar caracteres especiales (*/.}{¿'=, etc..). No use espacios en blanco." pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w\S{6,}" placeholder="Introduzca contraseña">
         </div>    
+        <br><strong>Informacion de uso del sistema</strong>
+        <div class="mt-2">
+            <label for="rfid" class="form-label">RFID</label>
+            <input type="number" name='rfid' class="bordecito form-control" placeholder="[Ejemplo]: 2020214563" max="9999999999" autocomplete="off" required>
+        </div>
         <div class="mt-2 mx-auto">
             <input type="submit" value="Enviar" id="enviar" class="boton btn btn-primary">
         </div>   

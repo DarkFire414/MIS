@@ -21,7 +21,9 @@ function buttonId(obj)
     
     redirect(currentid);
 }
-
+function redirectmodificar(lab){
+    $(".main").load("../html/dash_menus/ra_horario.php?id=" + lab);
+}
 function redirect(sensorType)
 {
     // Load the appropiate content in the div main
@@ -39,6 +41,15 @@ function redirect(sensorType)
             $(".main").load("../html/dash_menus/consu_horario.php");
             break;
         case "b4":
+            $(".main").load("../html/dash_menus/atiendesolicitudes.php");
+            break;
+        case "b5":
+            $(".main").load("../html/dash_menus/uso_alumnos.php");
+                break;
+        case "b6":
+            $(".main").load("../html/dash_menus/uso_alumnos.php");
+                break;
+        case "b7":
             // Cerrar sesión
             
             break;

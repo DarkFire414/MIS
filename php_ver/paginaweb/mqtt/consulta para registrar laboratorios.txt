@@ -1,1 +1,0 @@
-insert into hlab (id_labo, diasemana, horario) VALUES (317,'miercoles','7:30-9:00,13:30-15:00');
