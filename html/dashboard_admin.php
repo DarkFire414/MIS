@@ -326,6 +326,11 @@
                         </div>
                     </div>
                 </nav>
+                <div class="container p-3 my-3 bg-danger text-white" style='display:block;'>
+                    <h3>Alerta!</h3>
+                    <p>Se ha detectado posible forzamiento de la cerradura en el laboratorio: <strong>317</strong></p>
+                    <button type="button" class="btn btn-dark">Descartar alerta</button>
+                </div>
                 <!-- Page content-->
                 <div class="main p-2 container-fluid">
                     
