@@ -20,6 +20,15 @@ $count = $_GET ['count'];
 
 $query = "INSERT INTO `movimientos` (`id`, `rfid`, `laboratorio`, `mov`, `conteo`, `fecha`) VALUES (NULL, '$rfid', '$lab', '$mov', '$count', current_timestamp(2));";
 mysqli_query($conection, $query);
+
+if ($mov == "entrada"){
+    $query = "UPDATE estudiante SET laboratorio='$lab' WHERE rfid='$rfid';";
+}
+else{
+    $query = "UPDATE estudiante SET laboratorio='' WHERE rfid='$rfid';";
+}
+mysqli_query($conection, $query);
+
 mysqli_close($conection);
 echo " Data received \n";
 //echo $query;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 07, 2022 at 10:49 PM
+-- Generation Time: Dec 07, 2022 at 10:15 PM
 -- Server version: 10.5.17-MariaDB-1:10.5.17+maria~deb11
 -- PHP Version: 7.4.30
 
@@ -55,17 +55,19 @@ CREATE TABLE `estudiante` (
   `Planestudios` varchar(12) NOT NULL,
   `semestre` int(2) NOT NULL,
   `acceso` int(2) DEFAULT NULL,
-  `laboratorio` varchar(10) NOT NULL
+  `laboratorio` varchar(10) NOT NULL,
+  `rfid` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `estudiante`
 --
 
-INSERT INTO `estudiante` (`boleta`, `Contrasena`, `Nombre`, `unidad`, `Planestudios`, `semestre`, `acceso`, `laboratorio`) VALUES
-(2020680071, '$2y$10$vK12jL/C8rCGn6YRsVr3buOzZQ7izueyB3OabCoCuTlkDJ5uPoxP2', 'Joahan Pacheco Hernandez', 'upiih', 'Mecatrónica', 7, 1, '317'),
-(2020680074, '$2y$10$KUCz9mukOCIfkSU1KB3nIOjVQQNTy1wqGJCrLLFuc6O7ePrJC9rOS', 'Javier ', 'upiih', 'Mecatrónica', 7, 1, ''),
-(2020680151, '$2y$10$XKDywZYcVb5mD1RDcfdNLeWvHZtSBo1hODYdUXdxLzk7J51QIS7cW', 'Angel Moises Valencia Mendieta', 'upiih', 'Mecatrónica', 7, 1, '423');
+INSERT INTO `estudiante` (`boleta`, `Contrasena`, `Nombre`, `unidad`, `Planestudios`, `semestre`, `acceso`, `laboratorio`, `rfid`) VALUES
+(2015020282, '$2y$10$M.B33VQbtnLvmw7XWbkaDeIBtDJdMd6bbYtQjoyTF.arG9BjCmgoK', 'Brandon ', 'upiih', 'Mecatrónica', 7, 2, '317', '29E2FA97'),
+(2020680071, '$2y$10$vK12jL/C8rCGn6YRsVr3buOzZQ7izueyB3OabCoCuTlkDJ5uPoxP2', 'Joahan Pacheco Hernandez', 'upiih', 'Mecatrónica', 7, 2, '', '87654321'),
+(2020680074, '$2y$10$KUCz9mukOCIfkSU1KB3nIOjVQQNTy1wqGJCrLLFuc6O7ePrJC9rOS', 'Javier ', 'upiih', 'Mecatrónica', 7, 2, '317', '546321'),
+(2020680151, '$2y$10$XKDywZYcVb5mD1RDcfdNLeWvHZtSBo1hODYdUXdxLzk7J51QIS7cW', 'Angel Moises Valencia Mendieta', 'upiih', 'Mecatrónica', 7, 1, '423', '36912150');
 
 -- --------------------------------------------------------
 
@@ -86,10 +88,15 @@ CREATE TABLE `hlab` (
 
 INSERT INTO `hlab` (`idl`, `id_labo`, `diasemana`, `horario`) VALUES
 ('i317', 317, 'miercoles', '7:30-9:00,9:00-10:30'),
+('i422', 422, 'miercoles', '7:30-9:00'),
 ('j317', 317, 'jueves', '9:00-10:30,10:30-12:00,15:00-16:30'),
+('j422', 422, 'jueves', '7:30-9:00'),
 ('l317', 317, 'lunes', '7:30-9:00,9:00-10:30,10:30-12:00,15:00-16:30'),
+('l422', 422, 'lunes', '7:30-9:00'),
 ('m317', 317, 'martes', '9:00-10:30,13:30-15:00'),
-('v317', 317, 'viernes', '');
+('m422', 422, 'martes', '7:30-9:00'),
+('v317', 317, 'viernes', ''),
+('v422', 422, 'viernes', '7:30-9:00');
 
 -- --------------------------------------------------------
 
@@ -110,9 +117,32 @@ CREATE TABLE `laboratorio` (
 --
 
 INSERT INTO `laboratorio` (`id`, `disponibilidad`, `horario`, `edificio`, `unidad`) VALUES
-(317, 10, 'lunes: 12-13:30', 3, 'upiih'),
-(422, 0, 'martes 12:13:30', 4, 'cecyt'),
+(317, 4, 'lunes: 12-13:30', 3, 'upiih'),
+(422, 29, '', 4, 'upiih'),
 (423, 10, 'viernes 12', 4, 'cecyt');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `movimientos`
+--
+
+CREATE TABLE `movimientos` (
+  `id` int(10) NOT NULL,
+  `rfid` varchar(15) NOT NULL,
+  `laboratorio` varchar(10) NOT NULL,
+  `mov` varchar(10) NOT NULL,
+  `conteo` int(10) NOT NULL,
+  `fecha` timestamp(6) NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `movimientos`
+--
+
+INSERT INTO `movimientos` (`id`, `rfid`, `laboratorio`, `mov`, `conteo`, `fecha`) VALUES
+(47, '87654321', '317', 'entrada', 5, '2022-12-08 04:11:05.890000'),
+(48, '87654321', '317', 'salida', 5, '2022-12-08 04:11:53.420000');
 
 -- --------------------------------------------------------
 
@@ -130,6 +160,14 @@ CREATE TABLE `solicitudes` (
   `motivo` varchar(100) NOT NULL,
   `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `solicitudes`
+--
+
+INSERT INTO `solicitudes` (`id_solicitud`, `boleta`, `id_labo`, `estatus`, `horainicio`, `horatermino`, `motivo`, `fecha`) VALUES
+(19, 2015020282, 317, 2, '13:30', '14:30', 'Xd\r\n', '2022-11-23'),
+(27, 2020680071, 317, 2, '14:00', '15:00', 'xd', '2022-11-23');
 
 --
 -- Indexes for dumped tables
@@ -160,6 +198,12 @@ ALTER TABLE `laboratorio`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `movimientos`
+--
+ALTER TABLE `movimientos`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `solicitudes`
 --
 ALTER TABLE `solicitudes`
@@ -170,10 +214,16 @@ ALTER TABLE `solicitudes`
 --
 
 --
+-- AUTO_INCREMENT for table `movimientos`
+--
+ALTER TABLE `movimientos`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+
+--
 -- AUTO_INCREMENT for table `solicitudes`
 --
 ALTER TABLE `solicitudes`
-  MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
