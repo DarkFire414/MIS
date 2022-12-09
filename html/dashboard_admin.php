@@ -12,6 +12,13 @@
         session_destroy();
         header('location:login_admin.php');
     }
+    if(isset($_REQUEST['delteforzamiento'])){
+        $eliminaf = mysqli_query($conexion, "DELETE FROM forzamientos");
+        if($eliminaf){
+            echo"<script> alert('Alerta de forzamiento eliminada'); </script>";
+        }
+        //header('location:dashboard_admin.php');
+    }
     //PROCEDIMIENTO PARA REGISTRAR ALUMNOS:
     if((isset($_REQUEST['bole']) && !empty($_REQUEST['bole']))){ 
         //echo $_REQUEST['bole'];
@@ -326,11 +333,20 @@
                         </div>
                     </div>
                 </nav>
-                <div class="container p-3 my-3 bg-danger text-white" style='display:block;'>
-                    <h3>Alerta!</h3>
-                    <p>Se ha detectado posible forzamiento de la cerradura en el laboratorio: <strong>317</strong></p>
-                    <button type="button" class="btn btn-dark">Descartar alerta</button>
-                </div>
+                <?php
+                $forzado = mysqli_query($conexion, "SELECT * FROM forzamientos");
+                $Fforzado = $forzado->num_rows;
+                if($Fforzado > 0){
+                    $forzamiento = $forzado->fetch_assoc();
+                    echo "<div class='container p-3 my-3 bg-danger text-white' style='display:block;'>
+                        <h3>Alerta!</h3>";
+                    do{
+                        echo "<p>Se ha detectado posible forzamiento de la cerradura en el laboratorio: <strong>".$forzamiento['laboratorio']."</strong></p>";
+                    }while($forzamiento = $forzado->fetch_assoc());
+                    echo "<button type='button' class='btn btn-dark' onclick='confirmareliminar()'>Descartar alertas</button>  
+                    </div>";
+                }
+                ?>
                 <!-- Page content-->
                 <div class="main p-2 container-fluid">
                     
@@ -349,6 +365,12 @@
             redirect("b1");
         </script>
         <script>
+        function confirmareliminar(){
+            if (confirm("¿Eliminar todas las alertas?")) {
+                window.location = "dashboard_admin.php?delteforzamiento"
+            } else {
+            }
+        }               
         function confirmarcerrar(){
             if (confirm("¿Deseas cerrar tu sesión?")) {
                 window.location = "dashboard_admin.php?cerrar=1"
