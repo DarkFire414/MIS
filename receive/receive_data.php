@@ -13,13 +13,6 @@ $rfid = $_GET ['rfid'];
 $lab = $_GET ['lab'];
 $mov = $_GET ['mov'];
 $count = $_GET ['count'];
-if(isset($_GET['forz'])){
-    $forzamiento = $_GET['forz']; //Forz es un valor booleano que envia la ESP32
-    if($forzamiento){             //true=forzamiento sobre la puerta
-        $query_f = "INSERT INTO `forzamientos` (`id`,`laboratorio`,`fecha`) VALUES (NULL, '$lab', current_timestamp(2))";
-        mysqli_query($conection, $query_f);
-    }
-}
 
 //Message to client
 //echo "  Lab: \n"; echo $lab;

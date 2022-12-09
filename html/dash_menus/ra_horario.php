@@ -33,7 +33,7 @@
                     <option value="cecyt">CECyT</option>
                 </select>
             </div>
-              
+            <div class='table-responsive'>
             <table class = 'tb2 table table-hover table-responsive' style='text-align: center;'>
                 <tr>
                     <th colspan="9" style='text-align: center;'>INFORMACIÓN DEL HORARIO DE USO</th>
@@ -105,6 +105,7 @@
                     <td><input type="checkbox" name="v"  id="v" value='d'></td>
                 </tr>
             </table>
+            </div>
         </div>
         <button type="submit" value="Registrar" id="registrar_ra" class="boton btn btn-primary">Registrar</button>
     </form>

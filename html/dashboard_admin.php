@@ -17,7 +17,8 @@
         if($eliminaf){
             echo"<script> alert('Alerta de forzamiento eliminada'); </script>";
         }
-        //header('location:dashboard_admin.php');
+        unset($_REQUEST['delteforzamiento']);
+        header('location:dashboard_admin.php');
     }
     //PROCEDIMIENTO PARA REGISTRAR ALUMNOS:
     if((isset($_REQUEST['bole']) && !empty($_REQUEST['bole']))){ 
